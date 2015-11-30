@@ -20,5 +20,13 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
+  // Might as well look nice - am I right?
+  app.import('app/styles/skeleton.css');
+  app.import('app/styles/normalize.css');
+
+  // Where is kinvey-ember.js ? The kinvey source for TestDrive-Ember is from March 2014!
+  // Let's use this...
+  app.import('bower_components/kinvey/kinvey-html5.js');
+
   return app.toTree();
 };

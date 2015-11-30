@@ -1,0 +1,28 @@
+<div class="container center">
+  <div class="row">
+    <div class="column">
+      <h2 id="title">Ember Kinvey</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      {{#each flashMessages.queue as |flash|}}
+        {{flash-message flash=flash}}
+      {{/each}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <h5>What is this?</h5>
+      <p>This is a simple Ember (1.13) application that uses the <a href="http://www.kinvey.com/" target=_blank>Kinvey</a> Mobile Backend as a Service (mBaaS).</p>
+      <h5>Cool! May I have one?</h5>
+      <p>Sign up on the <a href="http://www.kinvey.com/" target=_blank>Kinvey</a> site for a Developer version of the Kinvey mBaas.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      {{epic-button buttonText="PING Kinvey" submit=(action "pingKinvey")}}
+    </div>
+  </div>
+</div>
+

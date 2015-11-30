@@ -13,6 +13,12 @@ module.exports = function(environment) {
       }
     },
 
+    contentSecurityPolicy: {
+      'default-src': "'none'",
+      'script-src': "'self' http://da189i1jfloii.cloudfront.net", // Allow scripts from this weird location
+      'connect-src': "'self' http://da189i1jfloii.cloudfront.net https://baas.kinvey.com" // Allow data (ajax/websocket) from this weird location
+    },
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
