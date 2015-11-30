@@ -1,17 +1,25 @@
 /*globals Kinvey*/
-import Ember        from 'ember';
+import Ember from 'ember';
+import ENV   from "../config/environment";
+
 
 var on = Ember.on;
 
 export default Ember.Service.extend({
-  kinveyAPI: null,
+  kinveyAPI:       null,
+
+  kinveyAppID:     null,
+  kinveyAppSecret: null,
 
   afterInitialization: on('init', function() {
-    if(!Kinvey) {
-      throw new Error("ERROR ::: The Kinvey library did not load successfully!");
-    } else {
-      this.set('kinveyAPI', Kinvey);
-    }
+    Ember.assert('The Kinvey library did not load successfully!', !!Kinvey);
+    this.set('kinveyAPI', Kinvey);
+
+    // These don't classify as an error, because you can still have fun pinging
+    // the Kinvey service before you actually set up an app
+    // see ../config/environment.js for more info about these variables
+    this.set('kinveyAppID', ENV.KINVEY_EPIC_EMBER_APP_ID);
+    this.set('kinveyAppID', ENV.KINVEY_EPIC_EMBER_APP_SECRET);
   }),
 
   ping: function () {

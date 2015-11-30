@@ -13,10 +13,17 @@ module.exports = function(environment) {
       }
     },
 
+    // These values are unique to your app. They are TOP SECRET, and don't belong in github （＊〇□〇）……！
+    // You need to set these values in each environment where you run your app
+    // Set the values locally in your profile `~/.bash_profile` or `~/.zsh_profile`
+    // Set the values in a deployed environment via your .travis.yml file
+    KINVEY_EPIC_EMBER_APP_ID: process.env.KINVEY_EPIC_EMBER_APP_ID,
+    KINVEY_EPIC_EMBER_APP_SECRET: process.env.KINVEY_EPIC_EMBER_APP_SECRET,
+
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' http://da189i1jfloii.cloudfront.net", // Allow scripts from this weird location
-      'connect-src': "'self' http://da189i1jfloii.cloudfront.net https://baas.kinvey.com" // Allow data (ajax/websocket) from this weird location
+      'script-src': "'self'", // Allow scripts from this weird location
+      'connect-src': "'self' https://baas.kinvey.com" // Allow data (ajax/websocket) from this weird location
     },
 
     APP: {
