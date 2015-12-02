@@ -3,10 +3,16 @@ import { moduleFor, test } from 'ember-qunit';
 moduleFor('service:kinvey-service', 'Unit | Service | kinvey service', {
 });
 
+// TODO: How do you mock ENV ?
+
 test('The Kinvey API gets set after initialization', function(assert) {
   assert.expect(1);
   // fake global Kinvey API object
-  window.Kinvey = {};
+  window.Kinvey = {
+    init: function () {
+      return 'Nothing to see here...';
+    }
+  };
 
   let service = this.subject();
 
@@ -19,6 +25,9 @@ test('ping returns KinveyAPI ping callback', function(assert) {
   window.Kinvey = {
     ping: function () {
       return 'Ping was successful!' ;
+    },
+    init: function () {
+      return 'Nothing to see here...';
     }
   };
 

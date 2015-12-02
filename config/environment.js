@@ -21,9 +21,11 @@ module.exports = function(environment) {
     KINVEY_EPIC_EMBER_APP_SECRET: process.env.KINVEY_EPIC_EMBER_APP_SECRET,
 
     contentSecurityPolicy: {
+      'connect-src': "'self' https://baas.kinvey.com", // Allow data (ajax/websocket) from Kinvey
       'default-src': "'none'",
-      'script-src': "'self'", // Allow scripts from this weird location
-      'connect-src': "'self' https://baas.kinvey.com" // Allow data (ajax/websocket) from this weird location
+      'font-src': "'self' http://fonts.gstatic.com", // Allow fonts to be loaded from http://fonts.gstatic.com
+      'script-src': "'self'",
+      'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com", // Allow inline styles and loaded CSS from http://fonts.googleapis.com
     },
 
     APP: {

@@ -10,3 +10,8 @@
   justify-content: center;
   flex-wrap: nowrap;
 }
+
+h6 {
+  text-transform: uppercase;
+  font-weight: 600;
+}
