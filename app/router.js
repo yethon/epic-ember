@@ -6,6 +6,10 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  // add a new user
+  this.route('user');
+  // display all users
+  this.route('users');
 });
 
 export default Router;

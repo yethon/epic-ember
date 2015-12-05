@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="column">
+    <div class="row">
+      <div class="row">
+        <div class="six columns">
+          <label>First Name</label>
+          {{input type="text" value=firstName class="u-full-width" placeholder="First Name" autofocus="autofocus" }}
+        </div>
+        <div class="six columns">
+          <label>Last Name</label>
+          {{input type="text" value=lastName class="u-full-width" placeholder="Last Name"}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="one-half column">
+          <label>Your username</label>
+          {{input type="text" value=userName class="u-full-width" placeholder="Your username"}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="one-half column">
+          <label>Your email</label>
+          {{input type="text" value=email class="u-full-width" placeholder="Email address"}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="one-half column">
+          <label>Password</label>
+          {{input type="password" value=password class="u-full-width" placeholder="Password"}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="one-half column">
+          {{epic-button buttonText="Submit new user" submit=(action "submitUser")}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

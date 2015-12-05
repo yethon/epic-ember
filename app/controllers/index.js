@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
   kinveyService: Ember.get(this, 'kinveyService'),
 
   actions: {
-    pingKinvey: function() {
+    pingKinvey() {
       this.get('flashMessages').clearMessages();
 
       this.get('kinveyService').ping()

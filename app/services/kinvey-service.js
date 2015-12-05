@@ -21,22 +21,30 @@ export default Ember.Service.extend({
     if(ENV.KINVEY_EPIC_EMBER_APP_ID && ENV.KINVEY_EPIC_EMBER_APP_SECRET) {
       this.set('kinveyAppID', ENV.KINVEY_EPIC_EMBER_APP_ID);
       this.set('kinveyAppSecret', ENV.KINVEY_EPIC_EMBER_APP_SECRET);
-      var options = {
+
+      this._initializeKinvey({
         appKey: this.get('kinveyAppID'),
         appSecret: [this.get('kinveyAppSecret')]
-      };
-      this._initializeKinvey(options);
+      });
     }
   }),
 
   // If you don't have an app with Kinvey, this will return a generic message
-  ping: function () {
+  ping () {
     return this.get('kinveyAPI').ping();
   },
 
-  // create a user L3751
+  getUsers() {
+    return this.get('kinveyAPI').User.find();
+  },
 
-  _initializeKinvey: function (options) {
-    return this.get('kinveyAPI').init(options);
+  _initializeKinvey (options) {
+    return this.get('kinveyAPI').init(options)
+    .then(() => {
+      this.get('kinveyAPI').User.login({
+        username: ENV.KINVEY_USER,
+        password: ENV.KINVEY_PASSWORD
+      });
+    });
   }
 });
