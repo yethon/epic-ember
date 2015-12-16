@@ -1,40 +1,20 @@
 import { moduleFor, test } from 'ember-qunit';
-import Ember from 'ember';
+import FlashObject from '../../helpers/flash-message';
+import FakeKinveyObject from '../../helpers/fake-kinvey';
 
-var Promise = Ember.RSVP.Promise;
-var resolve = Ember.RSVP.resolve;
-var reject = Ember.RSVP.reject;
 
-var fakeKinveyService = {};
-var fakeFlashMessages = {};
+var fakeKinveyService = new FakeKinveyObject();
+var fakeFlashMessages = FlashObject;
 
 moduleFor('controller:index', 'Unit | Controller | index', {
-  needs: ['service:flashMessages', 'service:kinveyService'],
 
   beforeEach: function() {
-    fakeFlashMessages = {clearMessages: function () {}};
-    // TODO Can you make fakeKinveyService dryer?
+    fakeFlashMessages = {clearMessages: () => {}};
   }
 });
 
 test('pingKinvey action displays successful message if kinvey response is good', function(assert) {
   assert.expect(2);
-
-  fakeKinveyService = {
-    ping: function () {
-      let kinveyCallBack = new Promise(function(resolve, reject) {
-        // on success
-        resolve({
-          kinvey: 'howdy',
-          version: '1'
-        });
-        // on failure
-        reject('Kinvey says: OOPS, my BAD!');
-      });
-
-      return resolve(kinveyCallBack);
-    }
-  };
 
   fakeFlashMessages.success = function (message) {
     assert.ok(true, 'success function called!');
@@ -69,21 +49,7 @@ test('pingKinvey action shows an error if kinvey response is bad', function(asse
     assert.equal(message, 'Kinvey did a bad thing : (⊙_◎)', 'Danger message created');
   };
 
-  fakeKinveyService = {
-    ping: function () {
-      let kinveyCallBack = new Promise(function(resolve, reject) {
-        // on success
-        resolve({
-          kinvey: 'howdy',
-          version: '1'
-        });
-        // on failure
-        reject('Kinvey says: OOPS, my BAD!');
-      });
-
-      return reject(kinveyCallBack);
-    }
-  };
+  fakeKinveyService.set('resolveSuccessfully', false);
 
   let controller = this.subject({
     flashMessages: fakeFlashMessages,
